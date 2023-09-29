@@ -20,6 +20,7 @@ const TablePage = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
 
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -101,7 +102,7 @@ const TablePage = () => {
   return (
     <div className='flex flex-col w-screen h-screen bg-[#b7bfca]'>
 
-      <div className='flex h-20 bg-blue-600  items-center justify-between px-12 py-4 m-8'>
+      <div className='flex h-20 bg-blue-600  items-center justify-between p-4 m-8'>
 
         <h1 className='text-black text-4xl font-semibold font-Inter p-4'>Product Table</h1>
 
@@ -109,7 +110,7 @@ const TablePage = () => {
      flex items-center justify-center'>Add Product</Link>
       </div>
 
-      <div className="flex h-screen">
+      <div className="flex h-screen border-gray-300 border-2 p-4 m-4">
         <div className="w-full min-w-fit py-2 sm:px-6 lg:px-8">
           <div className="overflow-hidden flex flex-col mx-autp">
 
@@ -122,7 +123,7 @@ const TablePage = () => {
                 onChange={(e) => setValue(e.target.value)}
                 type="text"
                 placeholder="Type to search..."
-                className="font- bg-[#FFFFFF] flex justify-center m-4 w-[300px] h-[50px]
+                className="font- bg-[#FFFFFF] flex justify-center  w-[300px] h-[50px]
             rounded-[8px] items-center outline-none focus:border-black border placeholder-black text-sm px-4 border-gray-300"
               />
 
@@ -143,7 +144,7 @@ const TablePage = () => {
 
 
             </form>
-            <table className="min-w-full mt-4 bg-[#b7bfca] text-center text-sm font-medium  border border-black">
+            <table className="min-w-full mt-4 text-center text-sm font-medium  border border-black">
               <thead
                 className="border-b bg-neutral-800 font-bold text-white dark:border-neutral-600 dark:bg-neutral-900">
                 <tr>

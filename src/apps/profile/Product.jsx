@@ -15,7 +15,7 @@ const Product = () => {
   const { id } = useParams()
 
   return (
-    <div className="flex justify-center items-center mx-auto">
+    <div className="flex justify-center items-center mx-auto w-1/2">
       <div className="flex flex-col w-full">
         <Link
           to={`/table-page`}
@@ -24,7 +24,7 @@ const Product = () => {
           Back To Home
         </Link>
         {data && (
-          <div className="w-[700p]  px-12 py-8 flex flex-row shadow-xl rounded-xl justify-center items-center bg-blue-700 mt-16 border-teal-800 border-2">
+          <div className="w-[700p]  px-12 py-8 flex flex-row shadow-xl rounded-xl justify-center items-center bg-gray-600 mt-16 border-teal-800 border-2">
             <div className="w-5/12  flex flex-col space-y-4 whitespace-nowrap">
               <h2 className="flex justify-center items-center h-20 text-white font-bold text-3xl border-black border-b-2">
                 Id :
@@ -44,17 +44,17 @@ const Product = () => {
             </div>
 
             <div className="w-7/12  flex flex-col space-y-4  ">
-              <h2 className="flex justify-center items-center h-20 text-teal-200 font-bold text-2xl border-black border-b-2">
+              <h2 className="flex justify-center items-center h-20 text-white/95 font-bold text-2xl border-black border-b-2">
                 {data.id}
               </h2>
-              <h2 className="flex justify-center items-center  h-28 text-teal-200 font-bold text-2xl border-black border-b-2">
+              <h2 className="flex justify-center items-center  h-28 text-white/95 font-bold text-2xl border-black border-b-2">
                 {data.title}
               </h2>
-              <h2 className="flex justify-center items-center  h-20 text-teal-200 font-bold text-2xl border-black border-b-2">
+              <h2 className="flex justify-center items-center  h-20 text-white/95 font-bold text-2xl border-black border-b-2">
                 {data.price}
               </h2>
              
-              <h2 className="flex justify-center items-center h-20 text-teal-200 font-bold text-2xl border-black border-b-2">
+              <h2 className="flex justify-center items-center h-20 text-white/95 font-bold text-2xl border-black border-b-2">
                 {data.category}
               </h2>
               <h2 className="text-teal-200 flex justify-center items-center h-20 font-bold text-2xl border-black border-b-2">

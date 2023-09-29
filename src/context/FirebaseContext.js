@@ -11,6 +11,17 @@ export const FirebaseProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null)
   const [user, setUser] = useState(null)
 
+  const [theme,setTheme] = useState("light")
+
+  const changeTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+    if (theme === "dark") {
+      document.documentElement.classList.add('dark')
+    }
+    else {
+      document.documentElement.classList.remove('dark')
+    }
+  }
 
   const register = async (email, password) => {
     try {
@@ -51,8 +62,8 @@ export const FirebaseProvider = ({ children }) => {
         user,
         register,
         login,
-        handleLogout
-        
+        handleLogout,
+        changeTheme
       }}
     >
       {children}

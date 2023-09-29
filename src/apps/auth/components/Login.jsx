@@ -72,7 +72,7 @@ const Login = () => {
                 />
                 Remember Me
               </label>
-              <label className=''>
+              <label>
                 Forgot Password
               </label>
             </div>

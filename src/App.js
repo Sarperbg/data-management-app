@@ -23,15 +23,17 @@ function App() {
   }
   return (
 
-    <Router>
-      <div className="flex w-screen h-screen">
-        <SidebarComponents />
-        <Routes>
-          <Route path='/*' element={<PrivateRoutes />} />
-        </Routes>
-      </div>
 
-    </Router>
+      <Router>
+        <div className="flex w-screen h-screen">
+          <SidebarComponents />
+          <Routes>
+            <Route path='/*' element={<PrivateRoutes />} />
+          </Routes>
+        </div>
+
+      </Router>
+
 
   )
 }
