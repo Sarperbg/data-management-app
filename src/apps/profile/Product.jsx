@@ -24,7 +24,7 @@ const Product = () => {
           Back To Home
         </Link>
         {data && (
-          <div className="w-[700p]  px-12 py-8 flex flex-row shadow-xl rounded-xl justify-center items-center bg-gray-600 mt-16 border-teal-800 border-2">
+          <div className="w-[700p] px-12 py-8 flex flex-row shadow-xl rounded-xl justify-center items-center bg-gray-600 mt-16 border-teal-800 border-2">
             <div className="w-5/12  flex flex-col space-y-4 whitespace-nowrap">
               <h2 className="flex justify-center items-center h-20 text-white font-bold text-3xl border-black border-b-2">
                 Id :
@@ -61,7 +61,7 @@ const Product = () => {
                 <p>
                   <img
                     src={data.image}
-                    className="w-20 h-20 m-auto"
+                    className="w-20 h-20 rounded-2xl m-auto"
                     alt={"test"}
                   />
                 </p>

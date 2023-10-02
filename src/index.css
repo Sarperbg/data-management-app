@@ -6,8 +6,6 @@
 @tailwind utilities;
 
 body {
-  min-height: 100vh;
-  display: flex;
   font-family: "Inter", sans-serif;
 } 
 

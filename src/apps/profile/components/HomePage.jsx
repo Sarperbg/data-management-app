@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className='flex flex-col w-screen h-screen bg-[#b7bfca]'>
 
-        <div className="flex flex-col  m-4 p-4">
+        <div className="flex flex-col m-4 p-4">
           <div className="flex w-[90%] mx-auto h-16 justify-between items-center">
 
             <h1 className="text-3xl">Dashboard User</h1>

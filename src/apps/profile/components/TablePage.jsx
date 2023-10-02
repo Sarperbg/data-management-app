@@ -45,7 +45,7 @@ const TablePage = () => {
     const sortedData = sortData(data, property, sortOrder);
     setData(sortedData);
   };
-  
+
   const sortData = (dataToSort, sortBy, sortOrder) => {
     const sortedData = [...dataToSort];
     sortedData.sort((a, b) => {
@@ -60,7 +60,7 @@ const TablePage = () => {
     });
     return sortedData;
   };
-  
+
   const loadDatas = () => {
     axios.get("http://localhost:3003/products").then((res) => {
       const responseData = res.data;
@@ -76,7 +76,7 @@ const TablePage = () => {
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3003/products/${id}`)
       .then(() => {
-        loadDatas(); 
+        loadDatas();
       })
       .catch((error) => {
         console.error('Delete request failed:', error);
@@ -102,20 +102,20 @@ const TablePage = () => {
   return (
     <div className='flex flex-col w-screen h-screen bg-[#b7bfca]'>
 
-      <div className='flex h-20 bg-blue-600  items-center justify-between p-4 m-8'>
+      <div className='flex h-20 bg-blue-600  items-center justify-between w-full p-8'>
 
-        <h1 className='text-black text-4xl font-semibold font-Inter p-4'>Product Table</h1>
+        <h1 className='text-black text-4xl font-semibold font-Inter p-8 m-4'>Product Table</h1>
 
         <Link to="/add-product" className='w-52 bg-white text-blue-600 font-semibold text-2xl h-12 rounded-lg 
-     flex items-center justify-center'>Add Product</Link>
+flex items-center justify-center'>Add Product</Link>
       </div>
 
-      <div className="flex h-screen border-gray-300 border-2 p-4 m-4">
-        <div className="w-full min-w-fit py-2 sm:px-6 lg:px-8">
-          <div className="overflow-hidden flex flex-col mx-autp">
+      <div className="w-full h-full border-gray-300 border-2 bg-[#b7bfca]">
+        <div className="flex w-full h-full min-w-fit sm:px-6 lg:px-8">
+          <div className="overflow-hidden flex flex-col mx-auto">
 
             <form
-              className='flex items-center justify-start'
+              className='flex items-center justify-start mt-4'
               onSubmit={handleSearch}
             >
               <input
@@ -124,12 +124,12 @@ const TablePage = () => {
                 type="text"
                 placeholder="Type to search..."
                 className="font- bg-[#FFFFFF] flex justify-center  w-[300px] h-[50px]
-            rounded-[8px] items-center outline-none focus:border-black border placeholder-black text-sm px-4 border-gray-300"
+      rounded-[8px] items-center outline-none focus:border-black border placeholder-black text-sm px-4 border-gray-300"
               />
 
               <AiOutlineSearch className='relative -left-12 hover:scale-95 max-xs:-top-11 max-xs:-relative max-xs:left-20
-          max-sm:-top-20 max-sm:-relative max-sm:left-20 max-md:-top-11 max-md:-relative max-md:left-20
-           'size={24} />
+    max-sm:-top-20 max-sm:-relative max-sm:left-20 max-md:-top-11 max-md:-relative max-md:left-20
+     'size={24} />
 
               <button
                 type='submit'
@@ -144,7 +144,7 @@ const TablePage = () => {
 
 
             </form>
-            <table className="min-w-full mt-4 text-center text-sm font-medium  border border-black">
+            <table className="mt-8 w-[100%] min-w-full mx-auto text-center text-sm font-medium  border border-black">
               <thead
                 className="border-b bg-neutral-800 font-bold text-white dark:border-neutral-600 dark:bg-neutral-900">
                 <tr>
@@ -211,20 +211,19 @@ const TablePage = () => {
 
               </tbody>
             </table>
+            <div className='flex w-full justify-between items-center mt-4'>
             <CSVLink data={data}
-
               separator={""}
               filename={"products-list.csv"}
-              className='flex m-auto mt-4 justify-center items-center w-[199px] h-[44px] 
-              bg-blue-600 rounded-[4px] text-[#FFFFFF]
-            transition-all hover:scale-95 cursor-pointer'>
+              className='flex justify-center items-center w-[199px] h-[44px] 
+        bg-blue-600 rounded-[4px] text-[#FFFFFF]
+      transition-all hover:scale-95 cursor-pointer'>
               Download data
             </CSVLink>
-
-
+            
             <TablePagination
               component="div"
-              className='flex justify-center items-center mt-4'
+              className='flex justify-center items-center'
               rowsPerPageOptions={[5, 10, 20, 40]}
               count={data.length}
               page={page}
@@ -232,11 +231,16 @@ const TablePage = () => {
               rowsPerPage={rowsPerPage}
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
+            </div>
+         
+
+
           </div>
         </div>
       </div>
 
     </div>
+
   )
 }
 

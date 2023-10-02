@@ -8,22 +8,22 @@ import { MdDarkMode } from "react-icons/md";
 
 const SidebarComponents = () => {
 
-  const { handleLogout, changeTheme } = useContext(FirebaseContext)
+  const { handleLogout, changeTheme, user } = useContext(FirebaseContext)
 
 
   return (
     <div className="flex flex-col h-screen w-1/6 bg-gray-700 
      text-white min-w-fit p-4 transition-all duration-300 dark:bg-black dark:text-white">
 
-      <div className='flex flex-col justify-center items-center mt-8'>
+      <div className='flex flex-col justify-center items-center'>
         <img src='https://avatars.githubusercontent.com/u/47990987?v=4' alt='test' className='w-40 h-40 rounded-xl' />
         <h3 className='mt-8 text-xl text-center whitespace-nowrap'>Front End Developer</h3>
-
+      <div className="flex flex-col justify-center items-center text-center text-sm w-[50%]">Welcome : <h1>{user.email}</h1></div>
       </div>
 
 
-      <div className='flex justify-center items-center mt-8'>
-        <ul className='flex flex-col gap-y-8'>
+      <div className='flex justify-center items-center mt-4'>
+        <ul className='flex flex-col gap-y-4'>
           <li className="flex justify-between gap-x-4 items-center p-4 border-gray border-[1px]  hover:bg-gray-600 rounded-xl">
             <AiOutlineHome size={24} className='flex items-center justify-center' />
             <Link to="/homepage" className="text-xl">HomePage</Link>

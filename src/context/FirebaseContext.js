@@ -1,6 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider } from "firebase/auth"
+import {
+  createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, signInWithPopup, GithubAuthProvider, GoogleAuthProvider
+} from "firebase/auth"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../firebaseSettings.js'
@@ -9,9 +12,10 @@ const FirebaseContext = createContext();
 
 export const FirebaseProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null)
+
   const [user, setUser] = useState(null)
 
-  const [theme,setTheme] = useState("light")
+  const [theme, setTheme] = useState("light")
 
   const changeTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -53,7 +57,42 @@ export const FirebaseProvider = ({ children }) => {
       window.location = "/"
     }, 5000)
   }
- 
+
+  const provider = new GithubAuthProvider()
+
+  const signInWithGitHub = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setUser(result.user)
+        setAuthToken(result.user.accessToken)
+
+        console.log("GitHub ile oturum açıldı:", user);
+        if (user) {
+          window.location = "/homepage"
+        }
+      })
+      .catch((error) => {
+        console.error("GitHub ile oturum açma hatası:", error);
+      });
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      const data = await signInWithPopup(auth, provider)
+      const credential = GoogleAuthProvider.credentialFromResult(data)
+      const token = credential.accessToken;
+      const user = data.user;
+      
+      if (user) {
+        window.location = "/homepage"
+      }
+    }
+    catch (error) {
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      toast.error(credential)
+    }
+  };
+
 
   return (
     <FirebaseContext.Provider
@@ -63,7 +102,9 @@ export const FirebaseProvider = ({ children }) => {
         register,
         login,
         handleLogout,
-        changeTheme
+        changeTheme,
+        signInWithGitHub,
+        signInWithGoogle
       }}
     >
       {children}

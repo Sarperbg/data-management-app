@@ -53,7 +53,7 @@ const EditProduct = () => {
 
 
         <form className='flex flex-col px-12 py-8 shadow-xl rounded-xl justify-center
-       items-center bg-gray-600 mt-16 border-teal-800 border-2 '>
+       items-center bg-gray-600 mt-16 border-teal-800 border-2'>
           <h1 className='flex justify-center items-center mt-4 text-white text-3xl font-semibold '>Edit Product</h1>
          
           <div className='flex flex-col w-full justify-center items-center mb-8 mt-8'>
