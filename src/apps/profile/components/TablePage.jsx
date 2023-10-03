@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,6 +7,9 @@ import { CSVLink } from "react-csv";
 import TablePagination from '@mui/material/TablePagination';
 import { AiOutlineSearch } from "react-icons/ai"
 
+import { AiOutlineFileExcel } from "react-icons/ai"
+import { useTranslation } from 'react-i18next';
+import '../../../i18n';
 
 
 const TablePage = () => {
@@ -20,6 +23,7 @@ const TablePage = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
 
+  const { t, i18n } = useTranslation();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -99,30 +103,37 @@ const TablePage = () => {
       .catch((err) => console.log(err));
   };
 
+  const clickHandle = async lang => {
+    await i18n.changeLanguage(lang, (err, t) => {
+      if (err) return console.log('Error loading resources:', err);
+    });
+  };
+
+
   return (
     <div className='flex flex-col w-screen h-screen bg-[#b7bfca]'>
 
       <div className='flex h-20 bg-blue-600  items-center justify-between w-full p-8'>
 
-        <h1 className='text-black text-4xl font-semibold font-Inter p-8 m-4'>Product Table</h1>
+        <h1 className='text-black text-4xl font-semibold font-Inter p-8 m-4'>{t('Product Table')}</h1>
 
         <Link to="/add-product" className='w-52 bg-white text-blue-600 font-semibold text-2xl h-12 rounded-lg 
-flex items-center justify-center'>Add Product</Link>
+flex items-center justify-center'>{t('Add Product')}</Link>
       </div>
 
       <div className="w-full h-full border-gray-300 border-2 bg-[#b7bfca]">
         <div className="flex w-full h-full min-w-fit sm:px-6 lg:px-8">
-          <div className="overflow-hidden flex flex-col mx-auto">
+          <div className="w-full flex-grow overflow-hidden flex flex-col mx-auto">
 
             <form
-              className='flex items-center justify-start mt-4'
+              className='flex items-center justify-start mt-4 '
               onSubmit={handleSearch}
             >
               <input
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 type="text"
-                placeholder="Type to search..."
+                placeholder={t('Type to Search...')}
                 className="font- bg-[#FFFFFF] flex justify-center  w-[300px] h-[50px]
       rounded-[8px] items-center outline-none focus:border-black border placeholder-black text-sm px-4 border-gray-300"
               />
@@ -134,35 +145,45 @@ flex items-center justify-center'>Add Product</Link>
               <button
                 type='submit'
                 className='bg-blue-600 rounded-md p-2 m-2 font-bold tracking-wider text-white'>
-                Search
+                {t('Search')}
               </button>
               <button
                 className='mx-2 bg-red-600 rounded-md p-2 m-2 font-bold tracking-wider text-white'
               >
-                Reset
+                {t('Reset')}
               </button>
+
+              <div>
+                <h3>Aktif Dil: {i18n.language} <br /></h3>
+                <nav className='flex justify-between w-full gap-x-4 '>
+                  <button className="bg-blue-600 rounded-xl p-2" onClick={() => clickHandle('tr')}>Türkçe</button>
+                  <button className="bg-blue-600 rounded-xl p-2" onClick={() => clickHandle('en')}>English</button>
+                </nav>
+                <h3>{t('welcome')}</h3>
+              </div>
 
 
             </form>
-            <table className="mt-8 w-[100%] min-w-full mx-auto text-center text-sm font-medium  border border-black">
+            <table className="w-full max-lg:w-[800px] max-md:w-[600px]
+             mt-8  mx-auto text-center text-sm font-medium  border border-black">
               <thead
-                className="border-b bg-neutral-800 font-bold text-white dark:border-neutral-600 dark:bg-neutral-900">
+                className=" bg-neutral-800 font-bold text-white dark:border-neutral-600 dark:bg-neutral-900">
                 <tr>
                   <th className="whitespace-pre px-4 py-2 flex justify-between" onClick={() => handleSortIconClick('id')}>
-                    ID {sortBy === 'id' && sortOrder === 'asc' ? '▲' : '▼'}
+                    {t('ID')} {sortBy === 'id' && sortOrder === 'asc' ? '▲' : '▼'}
                   </th>
                   <th className="whitespace-pre px-4 py-2" onClick={() => handleSortIconClick('title')}>
-                    Title {sortBy === 'title' && sortOrder === 'asc' ? '▲' : '▼'}
+                    {t('Title')} {sortBy === 'title' && sortOrder === 'asc' ? '▲' : '▼'}
                   </th>
                   <th className="whitespace-pre px-4 py-2" onClick={() => handleSortIconClick('price')}>
-                    Price {sortBy === 'price' && sortOrder === 'asc' ? '▲' : '▼'}
+                    {t('Price')} {sortBy === 'Price' && sortOrder === 'asc' ? '▲' : '▼'}
                   </th>
                   <th className="whitespace-pre px-4 py-2" onClick={() => handleSortIconClick('category')}>
-                    Category {sortBy === 'category' && sortOrder === 'asc' ? '▲' : '▼'}
+                    {t('Category')} {sortBy === 'category' && sortOrder === 'asc' ? '▲' : '▼'}
                   </th>
 
-                  <th scope="col" className="px-4 py-2">Image</th>
-                  <th scope="col" className="px-4 py-2">Action</th>
+                  <th scope="col" className="px-4 py-2">  {t('Image')}</th>
+                  <th scope="col" className="px-4 py-2">  {t('Action')}</th>
 
 
                 </tr>
@@ -192,18 +213,21 @@ flex items-center justify-center'>Add Product</Link>
                         />
                       </p>
                     </td>
-                    <td className='flex justify-center items-center space-x-4 px-6 py-2 mt-4'>
+                    <td className='flex justify-center items-center whitespace-nowrap space-x-4 p-4'>
                       <Link to={`/product/${item.id}`} className='text-white bg-black font-normal rounded-lg px-4 py-2'>
-                        View
+                        {t('View')}
                       </Link>
 
                       <Link to={`/edit-product/${item.id}`}
-                        className='text-white bg-blue-600 font-normal rounded-lg px-4 py-2'>Edit
+                        className='whitespace-nowrap text-white bg-blue-600 font-normal rounded-lg px-4 py-2'>
+                        {t('Edit')}
                       </Link>
 
                       <button
                         onClick={() => handleDelete(item.id)}
-                        className='text-white bg-red-600 font-normal rounded-lg px-4 py-2'>Delete</button>
+                        className='whitespace-nowrap text-white bg-red-600 font-normal rounded-lg px-4 py-2'>
+                        {t('Delete')}
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -211,28 +235,36 @@ flex items-center justify-center'>Add Product</Link>
 
               </tbody>
             </table>
+
             <div className='flex w-full justify-between items-center mt-4'>
-            <CSVLink data={data}
-              separator={""}
-              filename={"products-list.csv"}
-              className='flex justify-center items-center w-[199px] h-[44px] 
+              <div className='flex gap-x-4 justify-center'>
+                <CSVLink data={data}
+                  separator={""}
+                  filename={"products-list.csv"}
+                  className='flex justify-center items-center w-[199px] h-[44px] 
         bg-blue-600 rounded-[4px] text-[#FFFFFF]
       transition-all hover:scale-95 cursor-pointer'>
-              Download data
-            </CSVLink>
-            
-            <TablePagination
-              component="div"
-              className='flex justify-center items-center'
-              rowsPerPageOptions={[5, 10, 20, 40]}
-              count={data.length}
-              page={page}
-              onPageChange={handleChangePage}
-              rowsPerPage={rowsPerPage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+                  {t('Download Data')}
+                  <AiOutlineFileExcel size={24} className='flex items-center justify-center ml-4' />
+
+                </CSVLink>
+
+              </div>
+
+
+
+              <TablePagination
+                component="div"
+                className='flex justify-center items-center'
+                rowsPerPageOptions={[5, 10, 20, 40]}
+                count={data.length}
+                page={page}
+                onPageChange={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </div>
-         
+
 
 
           </div>

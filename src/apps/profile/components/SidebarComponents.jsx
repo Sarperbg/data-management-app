@@ -5,12 +5,15 @@ import { ImExit } from "react-icons/im"
 import { useContext, useState } from "react";
 import FirebaseContext from '../../../context/FirebaseContext'
 import { MdDarkMode } from "react-icons/md";
+import '../../../i18n';
+import { useTranslation } from "react-i18next";
 
 const SidebarComponents = () => {
 
   const { handleLogout, changeTheme, user } = useContext(FirebaseContext)
+  const {t, i18n} = useTranslation();
 
-
+  
   return (
     <div className="flex flex-col h-screen w-1/6 bg-gray-700 
      text-white min-w-fit p-4 transition-all duration-300 dark:bg-black dark:text-white">
@@ -26,11 +29,11 @@ const SidebarComponents = () => {
         <ul className='flex flex-col gap-y-4'>
           <li className="flex justify-between gap-x-4 items-center p-4 border-gray border-[1px]  hover:bg-gray-600 rounded-xl">
             <AiOutlineHome size={24} className='flex items-center justify-center' />
-            <Link to="/homepage" className="text-xl">HomePage</Link>
+            <Link to="/homepage" className="text-xl"> {t('HomePage')}</Link>
           </li>
           <li className="flex justify-between gap-x-4 items-center p-4 border-gray border-[1px]  hover:bg-gray-600 rounded-xl">
             <BsDatabaseCheck size={24} className='flex items-center justify-center' />
-            <Link to="/table-page" className="text-xl">Table Page</Link>
+            <Link to="/table-page" className="text-xl"> {t('Table Page')}</Link>
           </li>
 
           <li className="flex justify-between items-center p-4 border-gray border-[1px]  hover:bg-gray-600 rounded-xl mt-16">
@@ -41,7 +44,7 @@ const SidebarComponents = () => {
                 e.preventDefault()
                 handleLogout()
               }}>
-              Log Out
+              {t('Log Out')}
             </button>
 
           </li>
@@ -49,11 +52,12 @@ const SidebarComponents = () => {
             <MdDarkMode size={32} className="text-white" />
             <button
               onClick={changeTheme}
-              className="text-white text-xl ">Dark Mode</button>
+              className="text-white text-xl "> {t('Dark Mode')}</button>
           </li>
         </ul>
+        
       </div>
-
+    
     </div>
   )
 }

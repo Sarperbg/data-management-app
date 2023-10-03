@@ -65,7 +65,6 @@ export const FirebaseProvider = ({ children }) => {
       .then((result) => {
         setUser(result.user)
         setAuthToken(result.user.accessToken)
-
         console.log("GitHub ile oturum açıldı:", user);
         if (user) {
           window.location = "/homepage"
