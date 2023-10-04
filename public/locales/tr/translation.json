@@ -1,5 +1,5 @@
 {
- "welcome": "Welcome json",
+ "Welcome": "Hoşgeldiniz",
  "Dashboard User": "Kullanıcı Giriş Sayfası",
  "Earning": "Kazanç",
  "Share": "Paylaşma",
@@ -23,5 +23,8 @@
  "Download Data" :"Tabloyu İndir",
  "View": "Ürüne Git",
  "Edit": "Ürünü Düzenle",
- "Delete": "Ürünü Sil"
+ "Delete": "Ürünü Sil",
+ "Back to Home" : "Anasayfa'ya geri dön",
+ "Update Product": "Ürünü Güncelle"
+
 }

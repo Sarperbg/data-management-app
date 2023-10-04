@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
@@ -11,6 +12,7 @@ const AddProduct = () => {
   const [image, setImage] = useState("");
 
   const navigate = useNavigate();
+  const {t, i18n} = useTranslation();
 
   const data = {
     id: id,
@@ -35,7 +37,8 @@ const AddProduct = () => {
       <form className='flex flex-col w-[80%] px-8 py-4 shadow-xl rounded-xl justify-center
        items-center bg-gray-600  border-teal-800 border-2'>
         <h1 className='flex justify-center items-center mt-2 text-white text-3xl
-           font-semibold '>Add Product</h1>
+           font-semibold '>{t('Add Product')}
+           </h1>
         <div className='flex flex-col w-full justify-center items-center mb-8 mt-8'>
           <input
             value={id}
@@ -80,16 +83,19 @@ const AddProduct = () => {
           <button
             onClick={Submit}
             className='w-[80%] bg-blue-600 text-white text-xl font-normal outline-none mt-4  py-4 pl-6'>
-            Add Product
+          {t('Add Product')} 
           </button>
         </div>
 
 
         <Link
           to={`/table-page`}
-          className="hover:bg-teal-600 flex justify-center items-center w-52 mx-auto bg-white hover:shadow-md  outline-none rounded-xl font-bold border mt-8 hover:text-teal-200 text-teal-600 border-zinc-400 py-4 px-4 pl-4"
+          className="flex justify-center items-center hover:bg-teal-600  w-52 h-16 mx-auto
+           bg-white hover:shadow-md  outline-none rounded-xl font-bold border mt-8
+            hover:text-teal-200 text-teal-600 border-zinc-400"
         >
-          Back To Home
+          {t('Back to Home')} 
+
         </Link>
       </form>
 

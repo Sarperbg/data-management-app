@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
 const EditProduct = () => {
@@ -11,6 +12,7 @@ const EditProduct = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t, i18n } = useTranslation();
 
 
   useEffect(() => {
@@ -45,17 +47,22 @@ const EditProduct = () => {
 
         <Link
           to={`/table-page`}
-          className="hover:bg-teal-600 flex justify-center items-center w-52 mx-auto bg-white hover:shadow-md  outline-none rounded-xl font-bold border mt-8 hover:text-teal-200 text-teal-600 border-zinc-400 py-4 px-4 pl-4"
+          className="flex justify-center items-center hover:bg-teal-600  w-52 h-16 mx-auto
+           bg-white hover:shadow-md  outline-none rounded-xl font-bold border mt-8
+            hover:text-teal-200 text-teal-600 border-zinc-400"
         >
-          Back To Home
+          {t('Back to Home')}
+
         </Link>
 
 
 
         <form className='flex flex-col px-12 py-8 shadow-xl rounded-xl justify-center
        items-center bg-gray-600 mt-16 border-teal-800 border-2'>
-          <h1 className='flex justify-center items-center mt-4 text-white text-3xl font-semibold '>Edit Product</h1>
-         
+          <h1 className='flex justify-center items-center mt-4 text-white text-3xl font-semibold '>
+          {t('Update Product')}
+            </h1>
+
           <div className='flex flex-col w-full justify-center items-center mb-8 mt-8'>
 
             <input
@@ -93,7 +100,7 @@ const EditProduct = () => {
             <button
               onClick={Update}
               className='w-[80%] bg-blue-600 text-white text-xl font-normal outline-none mt-4  py-4 pl-6'>
-              Update Product
+              {t('Update Product')}
             </button>
           </div>
         </form>

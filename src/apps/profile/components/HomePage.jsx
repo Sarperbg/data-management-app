@@ -5,10 +5,12 @@ import { AiFillLike } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import '../../../i18n';
 import { useTranslation } from "react-i18next";
+import LanguageDropdown from "./LanguageDropdown";
 
 const HomePage = () => {
 
   const {t, i18n} = useTranslation();
+
 
   return (
     <div className='flex flex-col w-screen h-screen bg-[#b7bfca]'>
@@ -19,6 +21,8 @@ const HomePage = () => {
             <h1 className="text-3xl">{t('Dashboard User')}</h1>
             <AiOutlineMenu size={32} />
           </div>
+            
+        
           <div>
             <div className="flex w-[90%] mx-auto justify-between items-center mt-8">
 
